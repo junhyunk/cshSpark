@@ -1251,6 +1251,7 @@ class PersonWritable
 
 		out.writeUTF(p.name)
 		out.writeInt(p.actionType)
+		out.writeInt(p.tuples.size)
 		p.tuples.foreach(tu => {
 			writeCoordinateTuple(tu, out)
 		})
