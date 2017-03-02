@@ -16,7 +16,9 @@ class PersonRecord {
 	var name: String = _
 	var actionType: Long = _
 	var timestamp: Long = _
+
 	//coords
+	var coordinates = new ArrayBuffer[Double]
 }
 
 /**
@@ -43,5 +45,26 @@ class CSHWritableMK2
 
 	override def toString(): String = {
 		s""
+	}
+}
+
+/**
+ *	Person Record Reader
+ */
+class CSHPersonRecordReader
+	extends RecordReader[String, ???] {
+}
+
+/**
+ *	sc.newAPIHadoopFile 등에 넣을 InputFormat
+ */
+class CSHPersonRecordInputFormat
+	extends FileInputFormat[String, ???] {
+	/**
+	 *	override
+	 */
+	override def createRecordReader(arg0: InputSplit,
+		arg1: TaskAttemptContext) = {
+		new CSHPersonRecordReader
 	}
 }
